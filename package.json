@@ -1,0 +1,23 @@
+{
+  "name": "myAdwordsCampaign",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "^1.1.4"
+  },
+  "dependencies": {
+    "re-base": "^3.2.3",
+    "prop-types": "^15.5.7",
+    "react": "^15.3.2",
+    "chart.js": "^2.6.0",
+    "react-chartjs-2": "^2.7.2",
+    "react-dom": "15.3.2",
+    "react-router": "4.0.0-alpha.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
