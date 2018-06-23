@@ -6,6 +6,7 @@ class Header extends React.Component {
   		return (
   		<header>
         <h2 className="logo">My-Logo</h2>
+        <h3>Adwords Campaign</h3>
         <i className="fas fa-bars"></i>
       </header>
 

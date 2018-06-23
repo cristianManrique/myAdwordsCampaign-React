@@ -25,13 +25,16 @@ class App extends React.Component {
 		const SummaryDisplay = Object
 				.keys(this.state.adwordsData)
 				.map(key => <SummaryChart key={key} keyword={key} details={this.state.adwordsData[key]} />);
+				const KeywordsDisplay = Object
+						.keys(this.state.adwordsData)
+						.map(key => <KeywordsChart key={key} keyword={key} details={this.state.adwordsData[key]} />);
 		return (
 			<div>
 				<Header />
-				<div className="container-fluid">
+				<div className="container">
 					<div className="row">
 							<div className="col-md-12">
-								<h2 className="text-center"><i className="fas fa-chart-pie"></i> Adwords Campaign</h2>
+								<h2 className="text-center"><i className="fas fa-chart-pie"></i> Summary Chart</h2>
 							</div>
 							{SummaryDisplay}
 					</div>
@@ -39,7 +42,8 @@ class App extends React.Component {
 						<div className="col-md-12">
 							<h2 className="text-center"><i className="fas fa-chart-area"></i> Keywords Chart</h2>
 						</div>
-							<KeywordsChart />
+						{KeywordsDisplay}
+							{/* <KeywordsChart details={this.state.adwordsData} /> */}
 					</div>
 				</div>
 			</div>

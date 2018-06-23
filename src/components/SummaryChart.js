@@ -4,6 +4,7 @@ import {Doughnut} from 'react-chartjs-2';
 
 let chartDisplay = {};
 let legendOpts = {};
+// let options = {};
 
 
 class SummaryChart extends React.Component {
@@ -59,18 +60,38 @@ class SummaryChart extends React.Component {
           '#36A2EB',
           '#FFCE56'
         ],
-        legend: {
-          position: 'bottom'
-        }
+        options: {
+				responsive: true,
+				legend: {
+					display: false
+				},
+				tooltips: {
+					enabled: false,
+				}
+			}
         }]
       };
+
+      // options = {
+      //   maintainAspectRatio: true,
+      //   responsive: true,
+      //   legend: {
+      //     position: 'left',
+      //     labels: {
+      //       boxWidth: 10
+      //     }
+      //   }
+      // }
 
       legendOpts = {
         display: true,
         position: 'bottom',
-        fullWidth: true,
+        fullWidth: false,
         labels: {
-          fontColor: 'black'
+          fontColor: 'black',
+          fontSize: 9,
+          boxWidth: 10,
+          padding: 5
         }
       };
   }
@@ -81,10 +102,10 @@ class SummaryChart extends React.Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div className="col-md-3">
         <div className="box">
-          <h3 className="text-center">{ this.props.keyword }</h3>
-          <Doughnut data={chartDisplay} legend={legendOpts} redraw={true} />
+          <h4 className="text-center">{ this.props.keyword }</h4>
+          <Doughnut data={chartDisplay} legend={legendOpts} height={10} width={10} redraw={true} />
         </div>
       </div>
     );

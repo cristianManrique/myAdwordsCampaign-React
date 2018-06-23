@@ -1,41 +1,79 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Line} from 'react-chartjs-2';
 
-const data = {
-labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-datasets: [
-	{
-		label: 'My First dataset',
-		fill: false,
-		lineTension: 0.1,
-		backgroundColor: 'rgba(75,192,192,0.4)',
-		borderColor: 'rgba(75,192,192,1)',
-		borderCapStyle: 'butt',
-		borderDash: [],
-		borderDashOffset: 0.0,
-		borderJoinStyle: 'miter',
-		pointBorderColor: 'rgba(75,192,192,1)',
-		pointBackgroundColor: '#fff',
-		pointBorderWidth: 1,
-		pointHoverRadius: 5,
-		pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-		pointHoverBorderColor: 'rgba(220,220,220,1)',
-		pointHoverBorderWidth: 2,
-		pointRadius: 1,
-		pointHitRadius: 10,
-		data: [65, 59, 80, 81, 56, 55, 40]
-	}
-]
-};
+let chartDisplay = {};
+let legendOpts = {};
 
 class KeywordsChart extends React.Component {
 
+	renderChart(details) {
+		// variables
+    let data1 = {};
+    let data2 = {};
+		let data3 = {};
+		let labelList = [];
+		let conversionsDatas = [];
+		let impressionsDatas = [];
+		let clicksDatas = [];
+
+		// loop
+    Object.keys(details).forEach(function(key) {
+       data1 = details[key];
+				 Object.keys(data1).forEach(function(key) {
+			 		labelList.push(key);
+					data2 = data1[key];
+					Object.keys(data2).forEach(function(key) {
+						if (key === 'clicks'){
+							clicksDatas.push(data2[key]);
+						} else if (key === 'conversions') {
+							conversionsDatas.push(data2[key]);
+						} else if ( key === 'impressions') {
+							impressionsDatas.push(data2[key]);
+						}
+					});
+		 		});
+    });
+
+		this.setOptionChart(labelList, clicksDatas, conversionsDatas, impressionsDatas);
+	}
+
+	setOptionChart(labelList, clicksDatas, conversionsDatas, impressionsDatas){
+		chartDisplay = {
+		labels: labelList,
+		datasets: [
+			{
+						backgroundColor: 'rgba(0,0,0,0)',
+						borderColor: 'blue',
+						data: conversionsDatas,
+						label: 'conversions'
+			},
+			{
+						backgroundColor: 'rgba(0,0,0,0)',
+						borderColor: 'yellow',
+						data: impressionsDatas,
+						label: 'impressions'
+				},
+				{
+							backgroundColor: 'rgba(0,0,0,0)',
+							borderColor: 'magenta',
+							data: clicksDatas,
+							label: 'clicks'
+					}]
+		};
+
+	}
+
+	componentWillMount() {
+		this.renderChart(this.props.details);
+	};
+
 	render() {
     return (
-			<div className="col-md-4">
+			<div className="col-md-12">
 				<div className="box">
-					<h3 className="text-center">Keywords Chart</h3>
-					<Line data={data} />
+					<h3 className="text-center">{ this.props.keyword }</h3>
+					<Line data={chartDisplay} />
 				</div>
 			</div>
     );
