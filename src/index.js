@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 // Components
 import App from './components/App';
 import Connexion from './components/Connexion';
-import SummaryChart from './components/SummaryChart';
 import NotFound from './components/NotFound';
 // Rooter
 import { BrowserRouter, Match, Miss } from 'react-router';

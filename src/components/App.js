@@ -1,5 +1,6 @@
 // React
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // components
 import Header from './Header';
@@ -42,12 +43,12 @@ class App extends React.Component {
 					</div>
 				</div>
 			</div>
-
 		)
 	}
-	static propTypes = {
-	  params: React.PropTypes.object.isRequired
-	};
 }
+
+App.propTypes = {
+	params: PropTypes.object
+};
 
 export default App;

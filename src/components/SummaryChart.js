@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Doughnut} from 'react-chartjs-2';
 
 let chartDisplay = {};
@@ -88,10 +89,11 @@ class SummaryChart extends React.Component {
       </div>
     );
   };
-  static propTypes = {
-    keyword: React.PropTypes.string.isRequired,
-    details: React.PropTypes.array.isRequired
-  }
+};
+
+SummaryChart.propTypes = {
+  keyword: PropTypes.string.isRequired,
+  details: PropTypes.array.isRequired
 };
 
 export default SummaryChart;
