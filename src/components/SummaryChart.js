@@ -5,6 +5,9 @@ import {Doughnut} from 'react-chartjs-2';
 let chartDisplay = {};
 let legendOpts = {};
 let options = {}
+let clicksTotal = null;
+let conversionsTotal = null;
+let impressionsTotal = null;
 
 
 class SummaryChart extends React.Component {
@@ -13,9 +16,6 @@ class SummaryChart extends React.Component {
     // variables
     let data1 = {};
     let data2 = {};
-    let clicksTotal = null;
-    let conversionsTotal = null;
-    let impressionsTotal = null;
     // loop
     Object.keys(details).forEach(function(key) {
        data1 = details[key];
@@ -29,10 +29,10 @@ class SummaryChart extends React.Component {
       if (key === 'clicks'){
         clicksTotal += clicksTotal + data2[key];
       }
-      if (key === 'conversions'){
+      else if (key === 'conversions'){
         conversionsTotal += conversionsTotal + data2[key];
       }
-      if (key === 'impressions'){
+      else if (key === 'impressions'){
         impressionsTotal += impressionsTotal + data2[key];
       }
     });
@@ -59,9 +59,9 @@ class SummaryChart extends React.Component {
             '#543cee',// mauve
             '#9034d1',// violet
             '#FCD447'// jaune
-          ]
+          ],
+          radius: "90%"
         }],
-
       };
 
       options = {
@@ -72,11 +72,12 @@ class SummaryChart extends React.Component {
 					titleFontSize: 10,
 					cornerRadius: 3,
           borderWidth: 0
-				}
-      }
+				},
+        cutoutPercentage: 70,
+      };
 
       legendOpts = {
-        display: true,
+        display: false,
         position: 'bottom',
         fullWidth: false,
         labels: {
@@ -98,6 +99,11 @@ class SummaryChart extends React.Component {
         <div className="box">
           <h4 className="text-center"><span className="smallTitle">keword :</span> { this.props.keyword }</h4>
           <Doughnut data={chartDisplay} legend={legendOpts} options={options} height={30} width={40} />
+          <div className="legend mt10">
+            <p><span className="boxy mauve"></span> clicks: {clicksTotal}</p>
+            <p><span className="boxy violet"></span> Conversions: {conversionsTotal}</p>
+            <p><span className="boxy jaune"></span> Impressions: {impressionsTotal}</p>
+          </div>
         </div>
       </div>
     );

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Line} from 'react-chartjs-2';
 
 let chartDisplay = {};
-let legendOpts = {};
 let options = {};
 
 class KeywordsChart extends React.Component {
@@ -18,25 +17,27 @@ class KeywordsChart extends React.Component {
 		let clicksDatas = [];
 
 		// loop
-    Object.keys(details).forEach(function(key) {
-       data1 = details[key];
-				 Object.keys(data1).forEach(function(key) {
-			 		labelList.push(key);
+		Object.keys(details).forEach(function(key) {
+			data1 = details[key];
+				Object.keys(data1).forEach(function(key) {
+					labelList.push(key);
 					data2 = data1[key];
-					Object.keys(data2).forEach(function(key) {
-						if (key === 'clicks'){
-							clicksDatas.push(data2[key]);
-						} else if (key === 'conversions') {
-							conversionsDatas.push(data2[key]);
-						} else if ( key === 'impressions') {
-							impressionsDatas.push(data2[key]);
-						}
-					});
-		 		});
-    });
+						Object.keys(data2).forEach(function(key) {
+							if (key === 'clicks'){
+								clicksDatas.push(data2[key]);
+							}
+							else if (key === 'conversions') {
+								conversionsDatas.push(data2[key]);
+							}
+							 else if ( key === 'impressions') {
+								impressionsDatas.push(data2[key]);
+							}
+						});
+				});
+		});
 
 		this.setOptionChart(labelList, clicksDatas, conversionsDatas, impressionsDatas);
-	}
+	};
 
 	setOptionChart(labelList, clicksDatas, conversionsDatas, impressionsDatas){
 		chartDisplay = {
@@ -71,7 +72,7 @@ class KeywordsChart extends React.Component {
 		options = {
 			tooltips: {
 						mode: 'index',
-						intersect: false,
+						intersect: true,
 						backgroundColor: 'rgb(55, 67, 80, 0.8)',
 						titleFontSize: 10,
 						cornerRadius: 3,
@@ -104,7 +105,7 @@ class KeywordsChart extends React.Component {
 	        }
 		};
 
-	}
+	};
 
 	componentWillMount() {
 		this.renderChart(this.props.details);
@@ -119,7 +120,12 @@ class KeywordsChart extends React.Component {
 				</div>
 			</div>
     );
-  }
-}
+  };
+};
+
+KeywordsChart.propTypes = {
+  keyword: PropTypes.string.isRequired,
+  details: PropTypes.array.isRequired
+};
 
 export default KeywordsChart;

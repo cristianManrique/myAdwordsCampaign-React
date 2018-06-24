@@ -7,34 +7,35 @@ import Header from './Header';
 import SummaryChart from './SummaryChart';
 import KeywordsChart from './KeywordsChart';
 
-// Import
-import adwordsData from '../adwordsData';
+// Import Json file
+import dataJson from '../assets/data/data.json';
 
 class App extends React.Component {
 
 	state = {
-			adwordsData: adwordsData
-	}
+			adwordsData: dataJson
+	};
 
 	componentWillMount() {
-		this.setState({adwordsData});
-	}
-
+		this.setState({dataJson});
+	};
 
 	render() {
 		const SummaryDisplay = Object
 				.keys(this.state.adwordsData)
 				.map(key => <SummaryChart key={key} keyword={key} details={this.state.adwordsData[key]} />);
-				const KeywordsDisplay = Object
-						.keys(this.state.adwordsData)
-						.map(key => <KeywordsChart key={key} keyword={key} details={this.state.adwordsData[key]} />);
+
+		const KeywordsDisplay = Object
+				.keys(this.state.adwordsData)
+				.map(key => <KeywordsChart key={key} keyword={key} details={this.state.adwordsData[key]} />);
+
 		return (
 			<div>
 				<Header />
 				<div className="container">
 					<div className="row">
 							<div className="col-md-12 mt70">
-								<h2 className="text-center">-- Adwords Campaign --</h2>
+								<h2 className="text-center"> Adwords Campaign </h2>
 							</div>
 							<div className="col-md-12 mt10">
 								<h3 className="text-center"><i className="fas fa-chart-pie fa-icon"></i> Summary Chart</h3>
@@ -50,8 +51,8 @@ class App extends React.Component {
 				</div>
 			</div>
 		)
-	}
-}
+	};
+};
 
 App.propTypes = {
 	params: PropTypes.object

@@ -8,10 +8,8 @@ class Header extends React.Component {
         <h2 className="logo">My-Logo</h2>
         <i className="fas fa-bars"></i>
       </header>
-
-
     )
-  }
-}
+  };
+};
 
 export default Header;
