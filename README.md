@@ -22,7 +22,7 @@ Deom project - Visualize the data from my Adwords campaign in Summary and Keywor
 - For the second chart, i display a Line for each keyword because we have to manny datas to display.
 
 ## Authors
-* **Cristian Manrique** - *CM* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Cristian Manrique** - *CM* - [cristianManrique](https://github.com/cristianManrique/)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the LICENSE.md file for details
