@@ -4,7 +4,7 @@ import {Doughnut} from 'react-chartjs-2';
 
 let chartDisplay = {};
 let legendOpts = {};
-// let options = {};
+let options = {}
 
 
 class SummaryChart extends React.Component {
@@ -51,44 +51,36 @@ class SummaryChart extends React.Component {
         datasets: [{
           data: [clicks, conversions, impressions],
           backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56'
+            '#543cee',// mauve
+            '#9034d1',// violet
+            '#FCD447'// jaune
           ],
           hoverBackgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56'
-        ],
-        options: {
-				responsive: true,
-				legend: {
-					display: false
-				},
-				tooltips: {
-					enabled: false,
-				}
-			}
-        }]
+            '#543cee',// mauve
+            '#9034d1',// violet
+            '#FCD447'// jaune
+          ]
+        }],
+
       };
 
-      // options = {
-      //   maintainAspectRatio: true,
-      //   responsive: true,
-      //   legend: {
-      //     position: 'left',
-      //     labels: {
-      //       boxWidth: 10
-      //     }
-      //   }
-      // }
+      options = {
+        tooltips: {
+					mode: 'index',
+					intersect: false,
+					backgroundColor: 'rgb(55, 67, 80, 0.8)',
+					titleFontSize: 10,
+					cornerRadius: 3,
+          borderWidth: 0
+				}
+      }
 
       legendOpts = {
         display: true,
         position: 'bottom',
         fullWidth: false,
         labels: {
-          fontColor: 'black',
+          fontColor: '#171c22',
           fontSize: 9,
           boxWidth: 10,
           padding: 5
@@ -102,10 +94,10 @@ class SummaryChart extends React.Component {
 
   render() {
     return (
-      <div className="col-md-3">
+      <div className="col-6 col-md-6 col-lg-3">
         <div className="box">
-          <h4 className="text-center">{ this.props.keyword }</h4>
-          <Doughnut data={chartDisplay} legend={legendOpts} height={10} width={10} redraw={true} />
+          <h4 className="text-center"><span className="smallTitle">keword :</span> { this.props.keyword }</h4>
+          <Doughnut data={chartDisplay} legend={legendOpts} options={options} height={30} width={40} />
         </div>
       </div>
     );

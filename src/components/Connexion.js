@@ -14,7 +14,7 @@ class Connexion extends React.Component {
 		return (
 			<div className="connexionBox">
 				<form className="connexion" onSubmit={(e) => this.goToApp(e)} >
-					<h1>Adwords Campaign</h1>
+					<h3>Adwords Campaign</h3>
 					<input type="text" placeholder="nom utilisateur" pattern="[A-Za-z-]{1,}" required ref={(input) => {this.boxInput = input}} />
 					<button type="submit">GO</button>
 				</form>

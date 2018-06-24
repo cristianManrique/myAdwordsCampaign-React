@@ -33,17 +33,19 @@ class App extends React.Component {
 				<Header />
 				<div className="container">
 					<div className="row">
-							<div className="col-md-12">
-								<h2 className="text-center"><i className="fas fa-chart-pie"></i> Summary Chart</h2>
+							<div className="col-md-12 mt70">
+								<h2 className="text-center">-- Adwords Campaign --</h2>
+							</div>
+							<div className="col-md-12 mt10">
+								<h3 className="text-center"><i className="fas fa-chart-pie fa-icon"></i> Summary Chart</h3>
 							</div>
 							{SummaryDisplay}
 					</div>
 					<div className="row">
-						<div className="col-md-12">
-							<h2 className="text-center"><i className="fas fa-chart-area"></i> Keywords Chart</h2>
+						<div className="col-md-12 mt20">
+							<h3 className="text-center"><i className="fas fa-chart-area fa-icon"></i> Keywords Chart</h3>
 						</div>
 						{KeywordsDisplay}
-							{/* <KeywordsChart details={this.state.adwordsData} /> */}
 					</div>
 				</div>
 			</div>

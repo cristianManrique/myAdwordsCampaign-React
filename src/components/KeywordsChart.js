@@ -4,6 +4,7 @@ import {Line} from 'react-chartjs-2';
 
 let chartDisplay = {};
 let legendOpts = {};
+let options = {};
 
 class KeywordsChart extends React.Component {
 
@@ -11,7 +12,6 @@ class KeywordsChart extends React.Component {
 		// variables
     let data1 = {};
     let data2 = {};
-		let data3 = {};
 		let labelList = [];
 		let conversionsDatas = [];
 		let impressionsDatas = [];
@@ -42,24 +42,66 @@ class KeywordsChart extends React.Component {
 		chartDisplay = {
 		labels: labelList,
 		datasets: [
-			{
-						backgroundColor: 'rgba(0,0,0,0)',
-						borderColor: 'blue',
-						data: conversionsDatas,
-						label: 'conversions'
-			},
-			{
-						backgroundColor: 'rgba(0,0,0,0)',
-						borderColor: 'yellow',
-						data: impressionsDatas,
-						label: 'impressions'
-				},
 				{
 							backgroundColor: 'rgba(0,0,0,0)',
-							borderColor: 'magenta',
+							borderColor: '#543cee',// mauve
 							data: clicksDatas,
-							label: 'clicks'
-					}]
+							label: 'clicks',
+							borderWidth: 1.5,
+							fill: false
+					},
+					{
+							backgroundColor: 'rgba(0,0,0,0)',
+							borderColor: '#9034d1',// violet
+							data: conversionsDatas,
+							label: 'conversions',
+							borderWidth: 1.5,
+							fill: false
+					},
+					{
+							backgroundColor: 'rgba(0,0,0,0)',
+							borderColor: '#FCD447',// jaune
+							data: impressionsDatas,
+							label: 'impressions',
+							borderWidth: 1.5,
+							fill: false
+						}
+				]
+		};
+		options = {
+			tooltips: {
+						mode: 'index',
+						intersect: false,
+						backgroundColor: 'rgb(55, 67, 80, 0.8)',
+						titleFontSize: 10,
+						cornerRadius: 3,
+						borderWidth: 0
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+							ticks: {
+                    display: false
+                },
+								gridLines: {
+                    display:false
+                }
+						}],
+						yAxes: [{
+							stacked: true,
+							gridLines: {
+                    display:false
+                }
+						}]
+					},
+					legend: {
+
+	          position: 'bottom',
+	          labels: {
+	            boxWidth: 10
+	          }
+	        }
 		};
 
 	}
@@ -70,10 +112,10 @@ class KeywordsChart extends React.Component {
 
 	render() {
     return (
-			<div className="col-md-12">
+			<div className="col-md-6">
 				<div className="box">
-					<h3 className="text-center">{ this.props.keyword }</h3>
-					<Line data={chartDisplay} />
+					<h3><span className="smallTitle">keword :</span> { this.props.keyword }</h3>
+					<Line data={chartDisplay} options={options}/>
 				</div>
 			</div>
     );
