@@ -5,3 +5,8 @@
 
 # node_modules
 node_modules/
+
+## Step 3 — Create `.eslintignore` at the root
+node_modules
+build
+public

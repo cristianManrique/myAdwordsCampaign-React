@@ -1,28 +1,32 @@
 // React
-import React from 'react';
-import { render } from 'react-dom';
+import React from "react";
+import { createRoot } from "react-dom/client";
 // Components
-import App from './components/App';
-import Connexion from './components/Connexion';
-import NotFound from './components/NotFound';
-// Rooter
-import { BrowserRouter, Match, Miss } from 'react-router';
+import App from "./components/App";
+import Connexion from "./components/Connexion";
+import NotFound from "./components/NotFound";
+// Router
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // CSS
-import './assets/css/index.css';
+import "./assets/css/index.css";
 
 const Root = () => {
-	return (
-		<BrowserRouter>
-			<div>
-				<Match exactly pattern="/" component={Connexion} />
-				<Match pattern="/box/:pseudo" component={App} />
-				<Miss component={NotFound} />
-			</div>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
+      <Routes>
+        <Route exact path="/" element={<Connexion />} />
+        <Route path="/box/:pseudo" element={<App />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
-render(
-  <Root />,
-  document.getElementById('root')
-);
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<Root />);

@@ -1,28 +1,60 @@
-# my AdwordCampaign
-Adwords Campaign presented in charts
+# myAdwordsCampaign
+
+Adwords Campaign data visualized in interactive charts built with React 18 and chart.js v4.
 
 ## Getting Started
-Deom project - Visualize the data from my Adwords campaign in Summary and Keywords charts.
 
 ### Prerequisites
 - git
-- Node
-- npm
-- react-chartjs-2 (https://www.npmjs.com/package/react-chartjs-2)
+- Node >= 18
+- npm >= 9
 
 ### Installing
-- git clone https://github.com/cristianManrique/myAdwordsCampaign-React.git
-- npm install -save
-- npm start
 
-## Explain solution
-- I choose React.js to create this web app. It's easy and faster.
-- I choose react-chartjs-2 to display charts. It's animated, customisable, approved with html5 canvas.
-- For the first chart, i display a Doughnut chart for each keyword with a summary of world (clicks, conversions and impressions).
-- For the second chart, i display a Line for each keyword because we have to manny datas to display.
+1. Clone the repo
+```
+git clone https://github.com/cristianManrique/myAdwordsCampaign-React.git
+cd myAdwordsCampaign-React
+```
+
+2. Install dependencies
+```
+npm install
+```
+
+3. Start the app
+```
+npm start
+```
+
+## Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm start` | Start the dev server |
+| `npm run build` | Build for production |
+| `npm run test` | Run tests |
+| `npm run lint` | Check for ESLint errors |
+| `npm run lint:fix` | Auto-fix ESLint errors |
+| `npx prettier --write src/` | Auto-format all files in src/ |
+| `npm run format:check` | Check formatting without writing |
+
+## Solution
+
+- **React 18** — component-based UI, fast and maintainable
+- **chart.js v4 + react-chartjs-2** — animated, customizable HTML5 canvas charts
+- **Doughnut chart** — one per keyword showing a summary of clicks, conversions and impressions
+- **Line chart** — one per keyword displaying the full dataset over time
+- **React Router v6** — client-side routing
+- **ESLint + Prettier** — code quality and auto-formatting on save
+
+## TODO
+- Add date range filter
+- Add export to CSV
+- Improve mobile responsiveness
 
 ## Authors
-* **Cristian Manrique** - *CM* - [cristianManrique](https://github.com/cristianManrique/)
+**Cristian Manrique** — [cristianManrique](https://github.com/cristianManrique/)
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+MIT — see [LICENSE.md](LICENSE.md) for details

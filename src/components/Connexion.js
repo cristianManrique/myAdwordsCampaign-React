@@ -1,34 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-class Connexion extends React.Component {
+function Connexion() {
+  const navigate = useNavigate();
+  let boxInput = React.createRef();
 
-	goToApp = event => {
-		event.preventDefault();
-		// On récupère le pseudo
-		const pseudo = this.boxInput.value;
-		// On change d'url
-		this.context.router.transitionTo(`/box/${pseudo}`);
-	};
+  const goToApp = (event) => {
+    event.preventDefault();
+    const pseudo = boxInput.current.value;
+    navigate(`/box/${pseudo}`);
+  };
 
-	render() {
-		return (
-			<div className="connexionBox">
-				<form className="connexion" onSubmit={(e) => this.goToApp(e)} >
-					<h3>Adwords Campaign</h3>
-					<input type="text"
-								 placeholder="nom utilisateur"
-								 pattern="[A-Za-z-]{1,}"
-								 required ref={(input) => {this.boxInput = input}} />
-					<button type="submit">GO</button>
-				</form>
-			</div>
-		)
-	};
-
-	static contextTypes = {
-		router: PropTypes.object
-	};
-};
+  return (
+    <div className="connexionBox">
+      <form className="connexion" onSubmit={goToApp}>
+        <h3>Adwords Campaign</h3>
+        <input
+          type="text"
+          placeholder="nom utilisateur"
+          pattern="[A-Za-z]+"
+          required
+          ref={boxInput}
+        />
+        <button type="submit">GO</button>
+      </form>
+    </div>
+  );
+}
 
 export default Connexion;

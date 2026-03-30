@@ -1,23 +1,44 @@
 {
   "name": "myAdwordsCampaign",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "^1.1.4"
-  },
   "dependencies": {
-    "re-base": "^3.2.3",
-    "prop-types": "^15.5.7",
-    "react": "^15.3.2",
-    "chart.js": "^2.6.0",
-    "react-chartjs-2": "^2.7.2",
-    "react-dom": "^15.3.2",
-    "react-router": "4.0.0-alpha.3"
+    "chart.js": "^4.4.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.0",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write src/**/*.js",
+    "format:check": "prettier --check src/**/*.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
   }
 }
