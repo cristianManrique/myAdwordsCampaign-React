@@ -1,118 +1,94 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Doughnut} from 'react-chartjs-2';
+import React from "react";
+import PropTypes from "prop-types";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-let chartDisplay = {};
-let legendOpts = {};
-let options = {}
-let clicksTotal = null;
-let conversionsTotal = null;
-let impressionsTotal = null;
-
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 class SummaryChart extends React.Component {
+  buildChartData(details) {
+    let clicksTotal = 0;
+    let conversionsTotal = 0;
+    let impressionsTotal = 0;
 
-  renderChart(details) {
-    // variables
-    let data1 = {};
-    let data2 = {};
-    // loop
-    Object.keys(details).forEach(function(key) {
-       data1 = details[key];
+    Object.keys(details).forEach((key) => {
+      const data1 = details[key];
+      Object.keys(data1).forEach((innerKey) => {
+        const data2 = data1[innerKey];
+        Object.keys(data2).forEach((field) => {
+          if (field === "clicks") clicksTotal += data2[field];
+          else if (field === "conversions") conversionsTotal += data2[field];
+          else if (field === "impressions") impressionsTotal += data2[field];
+        });
       });
-
-    Object.keys(data1).forEach(function(key) {
-      data2 = data1[key];
     });
 
-    Object.keys(data2).forEach(function(key) {
-      if (key === 'clicks'){
-        clicksTotal += clicksTotal + data2[key];
-      }
-      else if (key === 'conversions'){
-        conversionsTotal += conversionsTotal + data2[key];
-      }
-      else if (key === 'impressions'){
-        impressionsTotal += impressionsTotal + data2[key];
-      }
-    });
-
-    this.setOptionChart(clicksTotal, conversionsTotal, impressionsTotal);
-
-  };
-
-  setOptionChart(clicks, conversions, impressions){
-    chartDisplay = {
-        labels: [
-          'clicks',
-          'conversions',
-          'impressions'
+    return {
+      clicksTotal,
+      conversionsTotal,
+      impressionsTotal,
+      data: {
+        labels: ["clicks", "conversions", "impressions"],
+        datasets: [
+          {
+            data: [clicksTotal, conversionsTotal, impressionsTotal],
+            backgroundColor: ["#543cee", "#9034d1", "#FCD447"],
+            hoverBackgroundColor: ["#543cee", "#9034d1", "#FCD447"],
+          },
         ],
-        datasets: [{
-          data: [clicks, conversions, impressions],
-          backgroundColor: [
-            '#543cee',// mauve
-            '#9034d1',// violet
-            '#FCD447'// jaune
-          ],
-          hoverBackgroundColor: [
-            '#543cee',// mauve
-            '#9034d1',// violet
-            '#FCD447'// jaune
-          ],
-          radius: "90%"
-        }],
-      };
-
-      options = {
-        tooltips: {
-					mode: 'index',
-					intersect: false,
-					backgroundColor: 'rgb(55, 67, 80, 0.8)',
-					titleFontSize: 10,
-					cornerRadius: 3,
-          borderWidth: 0
-				},
-        cutoutPercentage: 70,
-      };
-
-      legendOpts = {
-        display: false,
-        position: 'bottom',
-        fullWidth: false,
-        labels: {
-          fontColor: '#171c22',
-          fontSize: 9,
-          boxWidth: 10,
-          padding: 5
-        }
-      };
+      },
+      options: {
+        cutout: "70%",
+        plugins: {
+          tooltip: {
+            mode: "index",
+            intersect: false,
+            backgroundColor: "rgb(55, 67, 80, 0.8)",
+            titleFont: { size: 10 },
+            cornerRadius: 3,
+            borderWidth: 0,
+          },
+          legend: {
+            display: false,
+          },
+        },
+      },
+    };
   }
 
-  componentWillMount() {
-		this.renderChart(this.props.details);
-	};
-
   render() {
+    const { data, options, clicksTotal, conversionsTotal, impressionsTotal } =
+      this.buildChartData(this.props.details);
+
     return (
       <div className="col-6 col-md-6 col-lg-3">
         <div className="box">
-          <h4 className="text-center"><span className="smallTitle">keword :</span> { this.props.keyword }</h4>
-          <Doughnut data={chartDisplay} legend={legendOpts} options={options} height={30} width={40} />
+          <h4 className="text-center">
+            <span className="smallTitle">keyword :</span> {this.props.keyword}
+          </h4>
+          <Doughnut data={data} options={options} height={30} width={40} />
           <div className="legend mt10">
-            <p><span className="boxy mauve"></span> clicks: {clicksTotal}</p>
-            <p><span className="boxy violet"></span> Conversions: {conversionsTotal}</p>
-            <p><span className="boxy jaune"></span> Impressions: {impressionsTotal}</p>
+            <p>
+              <span className="boxy mauve"></span> clicks: {clicksTotal}
+            </p>
+            <p>
+              <span className="boxy violet"></span> Conversions:{" "}
+              {conversionsTotal}
+            </p>
+            <p>
+              <span className="boxy jaune"></span> Impressions:{" "}
+              {impressionsTotal}
+            </p>
           </div>
         </div>
       </div>
     );
-  };
-};
+  }
+}
 
 SummaryChart.propTypes = {
   keyword: PropTypes.string.isRequired,
-  details: PropTypes.array.isRequired
+  details: PropTypes.array.isRequired,
 };
 
 export default SummaryChart;
