@@ -1,57 +1,21 @@
-# myAdwordsCampaign
+# Adwords Campaign Dashboard
 
-Adwords Campaign data visualized in interactive charts built with React 18 and chart.js v4.
+React dashboard for visualizing Google Adwords campaign performance.
 
-## Getting Started
+## Features
+- Doughnut charts per keyword (clicks, conversions, impressions)
+- Line chart showing full trends over time
+- Responsive layout across devices
 
-### Prerequisites
-- git
-- Node >= 18
-- npm >= 9
+## Tech Stack
+React 18 · Chart.js v4 · JavaScript · CSS3
 
-### Installing
+## Live Demo
+[crisman.dev](https://crisman.dev)
 
-1. Clone the repo
-```
-git clone https://github.com/cristianManrique/myAdwordsCampaign-React.git
-cd myAdwordsCampaign-React
-```
+## Screenshot
+<img width="1099" height="808" alt="Addword campagn" src="https://github.com/user-attachments/assets/0468700d-99ef-4680-a6dd-73f50dc7cc8f" />
 
-2. Install dependencies
-```
-npm install
-```
-
-3. Start the app
-```
-npm start
-```
-
-## Available Scripts
-
-| Command | Description |
-|---|---|
-| `npm start` | Start the dev server |
-| `npm run build` | Build for production |
-| `npm run test` | Run tests |
-| `npm run lint` | Check for ESLint errors |
-| `npm run lint:fix` | Auto-fix ESLint errors |
-| `npx prettier --write src/` | Auto-format all files in src/ |
-| `npm run format:check` | Check formatting without writing |
-
-## Solution
-
-- **React 18** — component-based UI, fast and maintainable
-- **chart.js v4 + react-chartjs-2** — animated, customizable HTML5 canvas charts
-- **Doughnut chart** — one per keyword showing a summary of clicks, conversions and impressions
-- **Line chart** — one per keyword displaying the full dataset over time
-- **React Router v6** — client-side routing
-- **ESLint + Prettier** — code quality and auto-formatting on save
-
-## TODO
-- Add date range filter
-- Add export to CSV
-- Improve mobile responsiveness
 
 ## Authors
 **Cristian Manrique** — [cristianManrique](https://github.com/cristianManrique/)
